@@ -1,0 +1,17 @@
+class Solution:
+    def findLongestWord(self, s: str, dictionary: List[str]) -> str:
+        dictionary.sort(key=lambda x : (-len(x), x))#lambda第一个参数是长度逆序（长到短），第二个参数是同等长度的按照原来字典顺序排序
+        
+        def judge(word):#判断字典中的某个单词是否在给定的s:string中，查到return True，反之False
+            i = 0
+            for c in word:
+                index = s.find(c, i)#第一个参数是要查找字母，第二个参数是查找起始下标位置。查到返回下标，查不到返回-1
+                if index == -1:
+                    return False
+                i = index + 1#接着后面继续查
+            return True
+            
+        for word in dictionary:#字典中所有word中，有无被s包含的word
+            if judge(word):
+                return word
+        return ""
