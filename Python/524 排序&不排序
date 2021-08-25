@@ -1,3 +1,6 @@
+#整体思路：
+#1.先排序，由大到小&原序
+#2.再按顺序找到子串
 class Solution:
     def findLongestWord(self, s: str, dictionary: List[str]) -> str:
         dictionary.sort(key=lambda x : (-len(x), x))#lambda第一个参数是长度逆序（长到短），第二个参数是同等长度的按照原来字典顺序排序
@@ -15,3 +18,30 @@ class Solution:
             if judge(word):
                 return word
         return ""
+
+#整体思路：
+#2.若长度比longWord小/长度等且longWord字典序小，则continue，否则 判断是否为字串，是则记录
+class Solution:
+    def findLongestWord(self, s: str, dictionary: List[str]) -> str:
+        def isSubString(word):
+            index = 0
+            for c in word:
+                index = s.find(c, index)
+                if index < 0:
+                    return False
+                index += 1
+            return True
+        
+        longWord = ""
+        for word in dictionary:
+            lw, ll = len(word), len(longWord)
+            if lw<ll or (lw==ll and longWord<word):
+                continue
+            if isSubString(word):
+                longWord = word
+        return longWord
+        
+            
+        
+        
+        
