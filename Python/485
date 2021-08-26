@@ -1,0 +1,26 @@
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        longLen, curLen = 0, 0
+        for index, num in enumerate(nums): #enumerate比range快
+            if num == 1:
+                curLen += 1
+            elif curLen > longLen:#用max优化
+                longLen = curLen
+                curLen = 0
+            else:
+                curLen = 0
+        if curLen > longLen:
+            longLen = curLen
+        return longLen
+        
+# 1.max优化 2.数组遍历
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        longLen, curLen = 0, 0
+        for num in nums:
+            if num == 1:
+                curLen += 1
+            else:
+                longLen = max(curLen, longLen)
+                curLen = 0
+        return max(curLen, longLen)
