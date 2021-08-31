@@ -1,0 +1,11 @@
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        table = [0]*26
+        for i in range(len(t)):# s有letter则-1，t有的letter则+1.
+            if i < len(s):
+                table[ord(s[i]) - 97] -= 1 # a的ASCII码是97
+            table[ord(t[i]) - 97] += 1
+        
+        for i in range(26):# table[i]中0代表t、s都出现（+1-1）
+            if table[i] != 0:
+                return chr(i+97)
