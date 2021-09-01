@@ -1,0 +1,17 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        stack = []#存非最大值
+        dic={}
+        for num2 in nums2:
+            if len(stack)!=0 and num2 > stack[len(stack)-1]:
+                while len(stack)!=0 and num2 > stack[len(stack)-1]:
+                    dic[stack.pop()] = num2
+            stack.append(num2)
+        for i in stack:
+                dic[i] = -1
+        print(dic)
+        
+        ans = []
+        for num in nums1:
+            ans.append(dic[num])
+        return ans
