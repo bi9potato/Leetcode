@@ -1,0 +1,21 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = []
+        Stack = []
+        for num in nums2:
+            Stack.append(num)
+        for num in nums1:
+            temp = []
+            nextMax = -1
+            isFound = False
+            while not isFound:
+                top = Stack.pop()
+                if num == top:
+                    isFound = True
+                elif top > num:
+                    nextMax = top
+                temp.append(top)
+            ans.append(nextMax)
+            while len(temp)!=0 :
+                Stack.append(temp.pop())
+        return ans
