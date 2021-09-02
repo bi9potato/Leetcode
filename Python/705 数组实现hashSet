@@ -4,7 +4,7 @@ class MyHashSet:
         """
         Initialize your data structure here.
         """
-        self.hashSet = [0]*1000
+        self.hashSet = [0]*1000001
 
     def add(self, key: int) -> None:
         self.hashSet[key] = 1
