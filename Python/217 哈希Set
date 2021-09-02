@@ -1,0 +1,7 @@
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        hashSet = set()
+        for num in nums:
+            hashSet.add(num)
+        return True if len(hashSet)!=len(nums) else False
+        
